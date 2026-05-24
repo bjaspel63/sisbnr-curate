@@ -419,6 +419,41 @@
     <div class="projects" id="projectsContainer"></div>
   </section>
 
+  <section class="section">
+    <div class="section-header">
+      <h2>Teacher Submission Portal</h2>
+    </div>
+
+    <div style="background:white; padding:30px; border-radius:24px; box-shadow:0 4px 15px rgba(0,0,0,0.05); margin-bottom:40px;">
+      <div style="display:grid; gap:15px;">
+        <input type="text" id="projectTitle" placeholder="Project Title" class="search-bar" style="width:100%;" />
+
+        <input type="text" id="teacherName" placeholder="Teacher Name" class="search-bar" style="width:100%;" />
+
+        <select id="projectSubject" class="search-bar" style="width:100%;">
+          <option>ICT</option>
+          <option>Science</option>
+          <option>Mathematics</option>
+          <option>Art & Design</option>
+          <option>English</option>
+          <option>Robotics</option>
+        </select>
+
+        <input type="text" id="projectImage" placeholder="Image URL" class="search-bar" style="width:100%;" />
+
+        <button id="submitProjectBtn" class="black-btn" style="width:220px;">
+          Submit for Approval
+        </button>
+      </div>
+    </div>
+
+    <div class="section-header">
+      <h2>Admin Approval Queue</h2>
+    </div>
+
+    <div id="approvalQueue" class="projects"></div>
+  </section>
+
   <section class="teacher-section">
     <div class="teacher-grid">
       <div>
@@ -492,6 +527,88 @@
   </footer>
 
   <script>
+    const pendingProjects = [];
+
+    const approvalQueue = document.getElementById('approvalQueue');
+    const submitProjectBtn = document.getElementById('submitProjectBtn');
+
+    submitProjectBtn.addEventListener('click', () => {
+      const title = document.getElementById('projectTitle').value;
+      const teacher = document.getElementById('teacherName').value;
+      const subject = document.getElementById('projectSubject').value;
+      const image = document.getElementById('projectImage').value;
+
+      if (!title || !teacher || !image) {
+        alert('Please complete all fields.');
+        return;
+      }
+
+      const newProject = {
+        title,
+        student: `Submitted by ${teacher}`,
+        grade: 'Pending Approval',
+        subject,
+        likes: 0,
+        image
+      };
+
+      pendingProjects.push(newProject);
+      renderApprovalQueue();
+
+      document.getElementById('projectTitle').value = '';
+      document.getElementById('teacherName').value = '';
+      document.getElementById('projectImage').value = '';
+
+      alert('Project submitted for admin approval.');
+    });
+
+    function renderApprovalQueue() {
+      approvalQueue.innerHTML = '';
+
+      pendingProjects.forEach((project, index) => {
+        const card = document.createElement('div');
+        card.className = 'project-card';
+
+        card.innerHTML = `
+          <img src="${project.image}" alt="${project.title}">
+
+          <div class="project-content">
+            <div class="project-top">
+              <span class="tag">${project.subject}</span>
+              <span>⏳ Pending</span>
+            </div>
+
+            <h3>${project.title}</h3>
+
+            <p>${project.student}</p>
+
+            <div class="project-buttons">
+              <button class="view-btn approve-project">Approve</button>
+              <button class="star-btn reject-project">❌</button>
+            </div>
+          </div>
+        `;
+
+        const approveBtn = card.querySelector('.approve-project');
+        const rejectBtn = card.querySelector('.reject-project');
+
+        approveBtn.addEventListener('click', () => {
+          project.grade = 'Approved Project';
+          projects.unshift(project);
+          pendingProjects.splice(index, 1);
+          renderApprovalQueue();
+          displayProjects(projects);
+        });
+
+        rejectBtn.addEventListener('click', () => {
+          pendingProjects.splice(index, 1);
+          renderApprovalQueue();
+        });
+
+        approvalQueue.appendChild(card);
+      });
+    }
+
     const projects = [
       {
         title: 'Smart Traffic Light System',
