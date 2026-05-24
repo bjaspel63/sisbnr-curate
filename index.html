@@ -1,690 +1,614 @@
+# Teacher Student Work Showcase Website
+
+## index.html (Public Gallery)
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sisbfolio</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    body {
-      background: #f4f4f4;
-      color: #222;
-    }
-
-    header {
-      background: white;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo h1 {
-      font-size: 32px;
-    }
-
-    .logo p {
-      color: gray;
-      margin-top: 5px;
-    }
-
-    .header-buttons button {
-      padding: 12px 18px;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      margin-left: 10px;
-      transition: 0.3s;
-    }
-
-    .browse-btn {
-      background: #eee;
-    }
-
-    .upload-btn {
-      background: black;
-      color: white;
-    }
-
-    .header-buttons button:hover {
-      opacity: 0.85;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      padding: 60px 40px;
-      align-items: center;
-    }
-
-    .hero-text h2 {
-      font-size: 54px;
-      margin-bottom: 20px;
-    }
-
-    .hero-text p {
-      color: #666;
-      font-size: 18px;
-      margin-bottom: 30px;
-      line-height: 1.6;
-    }
-
-    .hero-buttons button {
-      padding: 14px 22px;
-      border: none;
-      border-radius: 14px;
-      margin-right: 12px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .black-btn {
-      background: black;
-      color: white;
-    }
-
-    .white-btn {
-      background: white;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    .hero img {
-      width: 100%;
-      border-radius: 24px;
-      height: 420px;
-      object-fit: cover;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 0 40px 60px;
-    }
-
-    .stat-card {
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
-
-    .stat-card h3 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
-
-    .section {
-      padding: 0 40px 60px;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 25px;
-    }
-
-    .section-header h2 {
-      font-size: 36px;
-    }
-
-    .categories {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 16px;
-    }
-
-    .category {
-      background: white;
-      padding: 25px;
-      text-align: center;
-      border-radius: 18px;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    }
-
-    .category:hover {
-      transform: translateY(-5px);
-    }
-
-    .search-bar {
-      padding: 12px 18px;
-      border-radius: 12px;
-      border: 1px solid #ddd;
-      width: 250px;
-    }
-
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 25px;
-    }
-
-    .project-card {
-      background: white;
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transition: 0.3s;
-    }
-
-    .project-card:hover {
-      transform: translateY(-8px);
-    }
-
-    .project-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-
-    .project-content {
-      padding: 22px;
-    }
-
-    .project-top {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 15px;
-      font-size: 14px;
-    }
-
-    .tag {
-      background: #eee;
-      padding: 6px 12px;
-      border-radius: 20px;
-    }
-
-    .project-content h3 {
-      font-size: 26px;
-      margin-bottom: 10px;
-    }
-
-    .project-content p {
-      color: #666;
-      margin-bottom: 20px;
-    }
-
-    .project-buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .project-buttons button {
-      border: none;
-      padding: 12px;
-      border-radius: 12px;
-      cursor: pointer;
-    }
-
-    .view-btn {
-      flex: 1;
-      background: black;
-      color: white;
-    }
-
-    .star-btn {
-      background: #eee;
-      width: 50px;
-    }
-
-    .teacher-section {
-      background: black;
-      color: white;
-      padding: 70px 40px;
-      margin-top: 40px;
-    }
-
-    .teacher-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 40px;
-      align-items: center;
-    }
-
-    .feature-box {
-      background: rgba(255,255,255,0.08);
-      padding: 18px;
-      border-radius: 16px;
-      margin-bottom: 15px;
-    }
-
-    .dashboard {
-      background: white;
-      color: black;
-      padding: 25px;
-      border-radius: 24px;
-    }
-
-    .approval-card {
-      border: 1px solid #ddd;
-      border-radius: 16px;
-      padding: 16px;
-      margin-top: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .approval-buttons button {
-      border: none;
-      padding: 10px 14px;
-      border-radius: 10px;
-      margin-left: 8px;
-      cursor: pointer;
-    }
-
-    .approve-btn {
-      background: black;
-      color: white;
-    }
-
-    footer {
-      background: white;
-      padding: 30px 40px;
-      margin-top: 40px;
-      border-top: 1px solid #ddd;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    footer p {
-      color: gray;
-      margin-top: 5px;
-    }
-
-    @media (max-width: 768px) {
-      .hero-text h2 {
-        font-size: 40px;
-      }
-
-      header {
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-      }
-
-      .search-bar {
-        width: 100%;
-      }
-    }
-  </style>
+  <title>Student Work Showcase</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <header>
-    <div class="logo">
-      <h1>Sisbfolio</h1>
-      <p>Showcasing Student Excellence</p>
-    </div>
+    <div class="logo">📚 Student Work Showcase</div>
 
-    <div class="header-buttons">
-      <button class="browse-btn">Browse Gallery</button>
-      <button class="upload-btn">Upload Project</button>
-    </div>
+    <nav>
+      <a href="index.html">Gallery</a>
+      <a href="teacher.html">Teacher Upload</a>
+      <a href="admin.html">Admin Panel</a>
+    </nav>
   </header>
 
   <section class="hero">
-    <div class="hero-text">
-      <h2>A Living Gallery of Student Learning</h2>
-
-      <p>
-        Discover innovative projects, coding activities, artworks,
-        and research outputs created by SISB students.
-      </p>
-
-      <div class="hero-buttons">
-        <button class="black-btn">Explore Projects</button>
-        <button class="white-btn">Teacher Dashboard</button>
-      </div>
-    </div>
-
-    <img
-      src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1400&auto=format&fit=crop"
-      alt="Students"
-    />
+    <h1>Celebrating Student Creativity</h1>
+    <p>Browse approved student projects from different subjects.</p>
   </section>
 
-  <section class="stats">
-    <div class="stat-card">
-      <h3>1,200+</h3>
-      <p>Student Projects</p>
-    </div>
+  <section class="controls">
+    <input type="text" id="searchBox" placeholder="Search projects..." />
 
-    <div class="stat-card">
-      <h3>85+</h3>
-      <p>Featured Works</p>
-    </div>
-
-    <div class="stat-card">
-      <h3>250+</h3>
-      <p>Active Students</p>
-    </div>
-
-    <div class="stat-card">
-      <h3>15</h3>
-      <p>Departments</p>
-    </div>
+    <select id="subjectFilter">
+      <option value="all">All Subjects</option>
+      <option value="Math">Math</option>
+      <option value="Science">Science</option>
+      <option value="English">English</option>
+      <option value="ICT">ICT</option>
+      <option value="Art">Art</option>
+      <option value="History">History</option>
+    </select>
   </section>
 
-  <section class="section">
-    <div class="section-header">
-      <h2>Explore Categories</h2>
-    </div>
-
-    <div class="categories">
-      <div class="category">ICT</div>
-      <div class="category">Science</div>
-      <div class="category">Mathematics</div>
-      <div class="category">Art & Design</div>
-      <div class="category">English</div>
-      <div class="category">Robotics</div>
-    </div>
+  <section class="highlights">
+    <h2>⭐ Featured Highlights</h2>
+    <div id="highlightContainer" class="highlight-grid"></div>
   </section>
 
-  <section class="section">
-    <div class="section-header">
-      <h2>Featured Student Works</h2>
-
-      <input
-        type="text"
-        id="searchInput"
-        class="search-bar"
-        placeholder="Search projects..."
-      />
-    </div>
-
-    <div class="projects" id="projectsContainer"></div>
-  </section>
-
-  <section class="section">
-    <div class="section-header">
-      <h2>Teacher Submission Portal</h2>
-    </div>
-
-    <div style="background:white; padding:30px; border-radius:24px; box-shadow:0 4px 15px rgba(0,0,0,0.05); margin-bottom:40px;">
-      <div style="display:grid; gap:15px;">
-        <input type="text" id="projectTitle" placeholder="Project Title" class="search-bar" style="width:100%;" />
-
-        <input type="text" id="teacherName" placeholder="Teacher Name" class="search-bar" style="width:100%;" />
-
-        <select id="projectSubject" class="search-bar" style="width:100%;">
-          <option>ICT</option>
-          <option>Science</option>
-          <option>Mathematics</option>
-          <option>Art & Design</option>
-          <option>English</option>
-          <option>Robotics</option>
-        </select>
-
-        <input type="text" id="projectImage" placeholder="Image URL" class="search-bar" style="width:100%;" />
-
-        <button id="submitProjectBtn" class="black-btn" style="width:220px;">
-          Submit for Approval
-        </button>
-      </div>
-    </div>
-
-    <div class="section-header">
-      <h2>Admin Approval Queue</h2>
-    </div>
-
-    <div id="approvalQueue" class="projects"></div>
-  </section>
-
-  <section class="teacher-section">
-    <div class="teacher-grid">
-      <div>
-        <h2 style="font-size: 42px; margin-bottom: 20px;">
-          Teacher Approval Dashboard
-        </h2>
-
-        <p style="color: #ccc; margin-bottom: 30px; line-height: 1.7;">
-          Review, approve, and organize student submissions with a modern moderation system.
-        </p>
-
-        <div class="feature-box">✅ Approve or reject submissions</div>
-        <div class="feature-box">✅ Feature outstanding projects</div>
-        <div class="feature-box">✅ Track student participation</div>
-        <div class="feature-box">✅ Generate digital exhibitions</div>
-      </div>
-
-      <div class="dashboard">
-        <h3 style="font-size: 28px; margin-bottom: 20px;">
-          Pending Approvals
-        </h3>
-
-        <div class="approval-card">
-          <div>
-            <strong>AI Smart Farming Prototype</strong>
-            <p>Waiting for review</p>
-          </div>
-
-          <div class="approval-buttons">
-            <button>Reject</button>
-            <button class="approve-btn">Approve</button>
-          </div>
-        </div>
-
-        <div class="approval-card">
-          <div>
-            <strong>Interactive Math Game</strong>
-            <p>Waiting for review</p>
-          </div>
-
-          <div class="approval-buttons">
-            <button>Reject</button>
-            <button class="approve-btn">Approve</button>
-          </div>
-        </div>
-
-        <div class="approval-card">
-          <div>
-            <strong>Sustainable City Design</strong>
-            <p>Waiting for review</p>
-          </div>
-
-          <div class="approval-buttons">
-            <button>Reject</button>
-            <button class="approve-btn">Approve</button>
-          </div>
-        </div>
-      </div>
-    </div>
+  <section class="gallery-section">
+    <h2>Approved Student Works</h2>
+    <div id="gallery" class="gallery"></div>
   </section>
 
   <footer>
-    <div>
-      <h3>Sisbfolio</h3>
-      <p>Empowering students through digital portfolios.</p>
-    </div>
-
-    <div>
-      <p>About • Gallery • Teachers • Students</p>
-    </div>
+    <p>© 2026 Student Work Showcase Platform</p>
   </footer>
 
-  <script>
-    const pendingProjects = [];
-
-    const approvalQueue = document.getElementById('approvalQueue');
-    const submitProjectBtn = document.getElementById('submitProjectBtn');
-
-    submitProjectBtn.addEventListener('click', () => {
-      const title = document.getElementById('projectTitle').value;
-      const teacher = document.getElementById('teacherName').value;
-      const subject = document.getElementById('projectSubject').value;
-      const image = document.getElementById('projectImage').value;
-
-      if (!title || !teacher || !image) {
-        alert('Please complete all fields.');
-        return;
-      }
-
-      const newProject = {
-        title,
-        student: `Submitted by ${teacher}`,
-        grade: 'Pending Approval',
-        subject,
-        likes: 0,
-        image
-      };
-
-      pendingProjects.push(newProject);
-      renderApprovalQueue();
-
-      document.getElementById('projectTitle').value = '';
-      document.getElementById('teacherName').value = '';
-      document.getElementById('projectImage').value = '';
-
-      alert('Project submitted for admin approval.');
-    });
-
-    function renderApprovalQueue() {
-      approvalQueue.innerHTML = '';
-
-      pendingProjects.forEach((project, index) => {
-        const card = document.createElement('div');
-        card.className = 'project-card';
-
-        card.innerHTML = `
-          <img src="${project.image}" alt="${project.title}">
-
-          <div class="project-content">
-            <div class="project-top">
-              <span class="tag">${project.subject}</span>
-              <span>⏳ Pending</span>
-            </div>
-
-            <h3>${project.title}</h3>
-
-            <p>${project.student}</p>
-
-            <div class="project-buttons">
-              <button class="view-btn approve-project">Approve</button>
-              <button class="star-btn reject-project">❌</button>
-            </div>
-          </div>
-        `;
-
-        const approveBtn = card.querySelector('.approve-project');
-        const rejectBtn = card.querySelector('.reject-project');
-
-        approveBtn.addEventListener('click', () => {
-          project.grade = 'Approved Project';
-          projects.unshift(project);
-          pendingProjects.splice(index, 1);
-          renderApprovalQueue();
-          displayProjects(projects);
-        });
-
-        rejectBtn.addEventListener('click', () => {
-          pendingProjects.splice(index, 1);
-          renderApprovalQueue();
-        });
-
-        approvalQueue.appendChild(card);
-      });
-    }
-
-    const projects = [
-      {
-        title: 'Smart Traffic Light System',
-        student: 'Ariya P.',
-        grade: 'Grade 9',
-        subject: 'ICT',
-        likes: 42,
-        image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop'
-      },
-      {
-        title: 'Digital Art: Future Bangkok',
-        student: 'Mika L.',
-        grade: 'Grade 8',
-        subject: 'Art & Design',
-        likes: 37,
-        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop'
-      },
-      {
-        title: 'Climate Change Research',
-        student: 'Nathan T.',
-        grade: 'Grade 10',
-        subject: 'Science',
-        likes: 58,
-        image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1200&auto=format&fit=crop'
-      }
-    ];
-
-    const container = document.getElementById('projectsContainer');
-    const searchInput = document.getElementById('searchInput');
-
-    function displayProjects(projectList) {
-      container.innerHTML = '';
-
-      projectList.forEach(project => {
-        const card = document.createElement('div');
-        card.className = 'project-card';
-
-        card.innerHTML = `
-          <img src="${project.image}" alt="${project.title}">
-
-          <div class="project-content">
-            <div class="project-top">
-              <span class="tag">${project.subject}</span>
-              <span>❤️ ${project.likes}</span>
-            </div>
-
-            <h3>${project.title}</h3>
-
-            <p>
-              Created by ${project.student} • ${project.grade}
-            </p>
-
-            <div class="project-buttons">
-              <button class="view-btn">View Project</button>
-              <button class="star-btn">⭐</button>
-            </div>
-          </div>
-        `;
-
-        container.appendChild(card);
-      });
-    }
-
-    displayProjects(projects);
-
-    searchInput.addEventListener('input', () => {
-      const value = searchInput.value.toLowerCase();
-
-      const filtered = projects.filter(project =>
-        project.title.toLowerCase().includes(value) ||
-        project.subject.toLowerCase().includes(value)
-      );
-
-      displayProjects(filtered);
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
+```
+
+---
+
+# teacher.html (Teacher Upload Page)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher Upload</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">👩‍🏫 Teacher Upload Portal</div>
+
+    <nav>
+      <a href="index.html">Gallery</a>
+      <a href="teacher.html">Teacher Upload</a>
+      <a href="admin.html">Admin Panel</a>
+    </nav>
+  </header>
+
+  <section class="upload-container">
+    <h1>Upload Student Work</h1>
+
+    <form id="uploadForm">
+      <input type="text" id="studentName" placeholder="Student Name" required />
+
+      <input type="text" id="projectTitle" placeholder="Project Title" required />
+
+      <select id="subject" required>
+        <option value="">Select Subject</option>
+        <option value="Math">Math</option>
+        <option value="Science">Science</option>
+        <option value="English">English</option>
+        <option value="ICT">ICT</option>
+        <option value="Art">Art</option>
+        <option value="History">History</option>
+      </select>
+
+      <textarea id="description" placeholder="Project Description" required></textarea>
+
+      <input type="url" id="image" placeholder="Image URL (optional)" />
+
+      <button type="submit">Upload for Approval</button>
+    </form>
+
+    <div class="notice">
+      <p>
+        Uploaded works will be reviewed by the admin before appearing in the public gallery.
+      </p>
+    </div>
+  </section>
+
+  <script src="teacher.js"></script>
+</body>
+</html>
+```
+
+---
+
+# admin.html (Admin Approval Page)
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">🛠 Admin Approval Panel</div>
+
+    <nav>
+      <a href="index.html">Gallery</a>
+      <a href="teacher.html">Teacher Upload</a>
+      <a href="admin.html">Admin Panel</a>
+    </nav>
+  </header>
+
+  <section class="admin-section">
+    <h1>Pending Approvals</h1>
+
+    <div id="pendingContainer" class="admin-grid"></div>
+  </section>
+
+  <script src="admin.js"></script>
+</body>
+</html>
+```
+
+---
+
+# style.css
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #f4f7fb;
+  color: #222;
+}
+
+header {
+  background: #1f4e79;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+nav {
+  display: flex;
+  gap: 15px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.hero {
+  background: linear-gradient(to right, #1f4e79, #3b82f6);
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.controls {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 25px;
+}
+
+.controls input,
+.controls select {
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  width: 260px;
+}
+
+.highlights,
+.gallery-section,
+.admin-section {
+  padding: 30px;
+}
+
+.highlights h2,
+.gallery-section h2,
+.admin-section h1 {
+  margin-bottom: 20px;
+}
+
+.highlight-grid,
+.gallery,
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.subject-tag {
+  display: inline-block;
+  background: #3b82f6;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+.card h3 {
+  margin-bottom: 8px;
+}
+
+.card p {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.upload-container {
+  max-width: 700px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.upload-container h1 {
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form input,
+form select,
+form textarea {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+button {
+  background: #1f4e79;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #163955;
+}
+
+.notice {
+  margin-top: 20px;
+  background: #e8f0fe;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.approve-btn {
+  background: green;
+}
+
+.delete-btn {
+  background: crimson;
+}
+
+footer {
+  background: #1f4e79;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+}
+```
+
+---
+
+# script.js
+
+```javascript
+const gallery = document.getElementById("gallery");
+const highlightContainer = document.getElementById("highlightContainer");
+const searchBox = document.getElementById("searchBox");
+const subjectFilter = document.getElementById("subjectFilter");
+
+const approvedWorks = JSON.parse(localStorage.getItem("approvedWorks")) || [];
+
+function displayWorks() {
+  gallery.innerHTML = "";
+
+  const searchText = searchBox.value.toLowerCase();
+  const selectedSubject = subjectFilter.value;
+
+  const filtered = approvedWorks.filter(work => {
+    const matchesSearch =
+      work.title.toLowerCase().includes(searchText) ||
+      work.student.toLowerCase().includes(searchText) ||
+      work.description.toLowerCase().includes(searchText);
+
+    const matchesSubject =
+      selectedSubject === "all" || work.subject === selectedSubject;
+
+    return matchesSearch && matchesSubject;
+  });
+
+  filtered.forEach(work => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="${work.image || 'https://picsum.photos/400/300'}" alt="Project">
+
+      <div class="card-content">
+        <div class="subject-tag">${work.subject}</div>
+        <h3>${work.title}</h3>
+        <p>${work.description}</p>
+        <strong>By: ${work.student}</strong>
+      </div>
+    `;
+
+    gallery.appendChild(card);
+  });
+}
+
+function displayHighlights() {
+  highlightContainer.innerHTML = "";
+
+  const highlights = approvedWorks.slice(0, 3);
+
+  highlights.forEach(work => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="${work.image || 'https://picsum.photos/400/300'}" alt="Project">
+
+      <div class="card-content">
+        <div class="subject-tag">Featured</div>
+        <h3>${work.title}</h3>
+        <p>${work.description}</p>
+      </div>
+    `;
+
+    highlightContainer.appendChild(card);
+  });
+}
+
+searchBox.addEventListener("input", displayWorks);
+subjectFilter.addEventListener("change", displayWorks);
+
+displayWorks();
+displayHighlights();
+```
+
+---
+
+# teacher.js
+
+```javascript
+const uploadForm = document.getElementById("uploadForm");
+
+uploadForm.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const newWork = {
+    student: document.getElementById("studentName").value,
+    title: document.getElementById("projectTitle").value,
+    subject: document.getElementById("subject").value,
+    description: document.getElementById("description").value,
+    image: document.getElementById("image").value,
+    approved: false
+  };
+
+  const pendingWorks = JSON.parse(localStorage.getItem("pendingWorks")) || [];
+
+  pendingWorks.push(newWork);
+
+  localStorage.setItem("pendingWorks", JSON.stringify(pendingWorks));
+
+  alert("Student work uploaded successfully and is waiting for admin approval.");
+
+  uploadForm.reset();
+});
+```
+
+---
+
+# admin.js
+
+```javascript
+const pendingContainer = document.getElementById("pendingContainer");
+
+let pendingWorks = JSON.parse(localStorage.getItem("pendingWorks")) || [];
+let approvedWorks = JSON.parse(localStorage.getItem("approvedWorks")) || [];
+
+function renderPending() {
+  pendingContainer.innerHTML = "";
+
+  if (pendingWorks.length === 0) {
+    pendingContainer.innerHTML = "<p>No pending submissions.</p>";
+    return;
+  }
+
+  pendingWorks.forEach((work, index) => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="${work.image || 'https://picsum.photos/400/300'}" alt="Project">
+
+      <div class="card-content">
+        <div class="subject-tag">${work.subject}</div>
+
+        <h3>${work.title}</h3>
+
+        <p>${work.description}</p>
+
+        <strong>By: ${work.student}</strong>
+
+        <div class="admin-actions">
+          <button class="approve-btn" onclick="approveWork(${index})">Approve</button>
+
+          <button class="delete-btn" onclick="deleteWork(${index})">Delete</button>
+        </div>
+      </div>
+    `;
+
+    pendingContainer.appendChild(card);
+  });
+}
+
+function approveWork(index) {
+  approvedWorks.push(pendingWorks[index]);
+
+  localStorage.setItem("approvedWorks", JSON.stringify(approvedWorks));
+
+  pendingWorks.splice(index, 1);
+
+  localStorage.setItem("pendingWorks", JSON.stringify(pendingWorks));
+
+  renderPending();
+}
+
+function deleteWork(index) {
+  pendingWorks.splice(index, 1);
+
+  localStorage.setItem("pendingWorks", JSON.stringify(pendingWorks));
+
+  renderPending();
+}
+
+renderPending();
+```
+
+---
+
+# Suggested Future Upgrades
+
+* Firebase database integration
+* Real teacher/admin login system
+* Upload real image files
+* Featured project system
+* Like and comment section
+* Dark mode
+* School branding
+* Student profile pages
+* AI project tagging
+* PDF export
+* Analytics dashboard
+* Mobile app version
+
+---
+
+# Folder Structure
+
+```text
+project-folder/
+│
+├── index.html
+├── teacher.html
+├── admin.html
+├── style.css
+├── script.js
+├── teacher.js
+└── admin.js
+```
+
+---
+
+# How It Works
+
+1. Teachers upload student work.
+2. Uploaded work is stored in Pending Approvals.
+3. Admin reviews and approves submissions.
+4. Approved projects appear in the public gallery.
+5. Users can search and filter by subject.
+6. Highlight cards showcase featured works.
+
+---
+
+# Hosting
+
+You can host this project using:
+
+* Netlify
+* GitHub Pages
+* Vercel
+* Firebase Hosting
