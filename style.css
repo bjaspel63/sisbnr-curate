@@ -310,4 +310,21 @@ footer {
     max-width: 100%;
   }
 
+  .upload-label {
+  font-weight: bold;
+  margin-top: 10px;
+  color: #4f46e5;
+}
+
+input[type="file"] {
+  background: white;
+  padding: 12px;
+  border-radius: 12px;
+  border: 2px dashed #cbd5e1;
+}
+
+input[type="file"]:hover {
+  border-color: #4f46e5;
+}
+
 }
