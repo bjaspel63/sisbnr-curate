@@ -1,104 +1,156 @@
-<section class="upload-container">
+<!DOCTYPE html>
+<html lang="en">
 
-  <h1>Upload Student Work</h1>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <form id="uploadForm">
+  <title>Teacher Upload Portal</title>
 
-    <input
-      type="text"
-      id="projectTitle"
-      placeholder="Project Title"
-      required
-    >
+  <link rel="stylesheet" href="style.css">
+</head>
 
-    <textarea
-      id="description"
-      placeholder="Project Description"
-      required
-    ></textarea>
+<body>
 
-    <select id="studentClass" required>
-      <option value="">Select Class</option>
+  <header>
 
-      <option>P1 Hope</option>
-      <option>P1 Love</option>
-      <option>P1 Peace</option>
-      <option>P1 Joy</option>
+    <div class="logo">
+      📚 Student Work Upload
+    </div>
 
-      <option>P2 Love</option>
-      <option>P2 Joy</option>
-      <option>P2 Peace</option>
+  </header>
 
-      <option>P3 Joy</option>
-      <option>P3 Love</option>
-      <option>P3 Peace</option>
+  <section class="upload-container">
 
-      <option>P4 Love</option>
-      <option>P4 Joy</option>
+    <h1>Upload Student Work</h1>
 
-      <option>P5 Joy</option>
-      <option>P5 Love</option>
+    <form id="uploadForm">
 
-      <option>P6 Joy</option>
-      <option>P6 Love</option>
-    </select>
+      <!-- TITLE -->
 
-    <select id="subject" required>
+      <input
+        type="text"
+        id="projectTitle"
+        placeholder="Project Title"
+        required
+      >
 
-      <option value="">Select Subject</option>
+      <!-- DESCRIPTION -->
 
-      <option>English</option>
-      <option>Math</option>
-      <option>Science</option>
-      <option>Chinese</option>
-      <option>Thai</option>
-      <option>ICT</option>
-      <option>Music</option>
-      <option>Art</option>
-      <option>Drama</option>
-      <option>Social Studies</option>
+      <textarea
+        id="description"
+        placeholder="Project Description"
+        required
+      ></textarea>
 
-    </select>
+      <!-- CLASS -->
 
-    <input
-      type="text"
-      id="taggedName"
-      placeholder="Tagged Student Name"
-      required
-    >
+      <select id="studentClass" required>
 
-    <input
-      type="text"
-      id="teacherName"
-      placeholder="Teacher Name"
-      required
-    >
+        <option value="">
+          Select Class
+        </option>
 
-    <label class="upload-label">
-      Upload Files
-    </label>
+        <option>P1 Hope</option>
+        <option>P1 Love</option>
+        <option>P1 Peace</option>
+        <option>P1 Joy</option>
 
-    <input
-      type="file"
-      id="mediaUpload"
-      multiple
-      accept="image/*,video/*,.pdf"
-    >
+        <option>P2 Love</option>
+        <option>P2 Joy</option>
+        <option>P2 Peace</option>
 
-    <input
-      type="url"
-      id="projectLink"
-      placeholder="Optional Project Link"
-    >
+        <option>P3 Joy</option>
+        <option>P3 Love</option>
+        <option>P3 Peace</option>
 
-    <button type="submit">
-      Upload for Approval
-    </button>
+        <option>P4 Love</option>
+        <option>P4 Joy</option>
 
-  </form>
+        <option>P5 Joy</option>
+        <option>P5 Love</option>
 
-  <div class="notice">
-    Uploaded student work will wait for admin approval before appearing publicly.
-  </div>
+        <option>P6 Joy</option>
+        <option>P6 Love</option>
 
-</section>
+      </select>
+
+      <!-- SUBJECT -->
+
+      <select id="subject" required>
+
+        <option value="">
+          Select Subject
+        </option>
+
+        <option>English</option>
+        <option>Math</option>
+        <option>Science</option>
+        <option>Chinese</option>
+        <option>Thai</option>
+        <option>ICT</option>
+        <option>Music</option>
+        <option>Art</option>
+        <option>Drama</option>
+        <option>Social Studies</option>
+
+      </select>
+
+      <!-- TAGGED NAME -->
+
+      <input
+        type="text"
+        id="taggedName"
+        placeholder="Tagged Student Name"
+        required
+      >
+
+      <!-- TEACHER NAME -->
+
+      <input
+        type="text"
+        id="teacherName"
+        placeholder="Teacher Name"
+        required
+      >
+
+      <!-- FILE UPLOAD -->
+
+      <label class="upload-label">
+        Upload Images, Videos, or PDFs
+      </label>
+
+      <input
+        type="file"
+        id="mediaUpload"
+        multiple
+        accept="image/*,video/*,.pdf"
+      >
+
+      <!-- OPTIONAL LINK -->
+
+      <input
+        type="url"
+        id="projectLink"
+        placeholder="Optional Project Link"
+      >
+
+      <!-- SUBMIT -->
+
+      <button type="submit">
+        Upload for Approval
+      </button>
+
+    </form>
+
+    <div class="notice">
+      Uploaded student work will wait for admin approval before appearing publicly.
+    </div>
+
+  </section>
+
+  <script src="teacher.js"></script>
+
+</body>
+
+</html>
