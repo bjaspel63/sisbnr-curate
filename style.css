@@ -327,7 +327,7 @@ input[type="file"]:hover {
   border-color: #4f46e5;
 }
 
-  /* MODAL */
+/* MODAL */
 
 .modal {
   position: fixed;
@@ -348,37 +348,29 @@ input[type="file"]:hover {
   width: 100%;
   max-width: 800px;
   border-radius: 20px;
-  overflow-y: auto;
+  overflow: hidden;
   max-height: 90vh;
+  overflow-y: auto;
   position: relative;
 }
 
 .modal-image {
   width: 100%;
-  height: 350px;
+  height: 320px;
   object-fit: cover;
 }
 
-.modal-content h2 {
-  padding: 20px 25px 10px;
+.modal-body {
+  padding: 25px;
 }
 
-.modal-tag {
-  margin: 0 25px;
-  display: inline-block;
-  background: #4f46e5;
-  color: white;
-  padding: 8px 14px;
-  border-radius: 999px;
+.modal-body h2 {
+  margin: 15px 0;
 }
 
 .modal-description {
-  padding: 20px 25px;
   line-height: 1.7;
-}
-
-.modal-info {
-  padding: 0 25px 20px;
+  margin-bottom: 20px;
 }
 
 .modal-info p {
@@ -387,7 +379,7 @@ input[type="file"]:hover {
 
 .project-link {
   display: inline-block;
-  margin: 0 25px 20px;
+  margin-top: 15px;
   background: #4f46e5;
   color: white;
   padding: 12px 18px;
@@ -396,7 +388,7 @@ input[type="file"]:hover {
 }
 
 .modal-files {
-  padding: 0 25px 30px;
+  margin-top: 25px;
 }
 
 .file-item {
@@ -408,9 +400,10 @@ input[type="file"]:hover {
 
 .close-modal {
   position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 2rem;
+  top: 10px;
+  right: 18px;
   color: white;
+  font-size: 2rem;
+  
   cursor: pointer;
 }
