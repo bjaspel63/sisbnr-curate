@@ -1,9 +1,5 @@
 const gallery = document.getElementById("gallery");
-const highlightContainer =
-  document.getElementById("highlightContainer");
-
-const searchBox =
-  document.getElementById("searchBox");
+const searchBox = document.getElementById("searchBox");
 
 const filterButtons =
   document.querySelectorAll(".filter-btn");
@@ -22,39 +18,39 @@ function displayWorks() {
   const searchText =
     searchBox.value.toLowerCase();
 
-  const filtered = approvedWorks.filter(work => {
+  const filteredWorks =
+    approvedWorks.filter(work => {
 
-    const matchesSearch =
+      const matchesSearch =
 
-      work.title.toLowerCase().includes(searchText) ||
+        work.title.toLowerCase().includes(searchText) ||
 
-      work.description.toLowerCase().includes(searchText) ||
+        work.description.toLowerCase().includes(searchText) ||
 
-      work.taggedName.toLowerCase().includes(searchText);
+        work.taggedName.toLowerCase().includes(searchText);
 
-    const matchesSubject =
+      const matchesSubject =
 
-      selectedSubject === "all" ||
+        selectedSubject === "all" ||
 
-      work.subject === selectedSubject;
+        work.subject === selectedSubject;
 
-    return matchesSearch && matchesSubject;
+      return matchesSearch && matchesSubject;
 
-  });
+    });
 
-  filtered.forEach((work, index) => {
+  filteredWorks.forEach((work, index) => {
 
-    if (!work.likes) {
-      work.likes = 0;
-    }
-
-    const card = document.createElement("div");
+    const card =
+      document.createElement("div");
 
     card.className = "card";
 
     card.innerHTML = `
 
-      <img src="https://picsum.photos/500/300?random=${index}">
+      <img
+        src="https://picsum.photos/500/300?random=${index}"
+      >
 
       <div class="card-content">
 
@@ -62,7 +58,9 @@ function displayWorks() {
           ${work.subject}
         </div>
 
-        <h3>${work.title}</h3>
+        <h3>
+          ${work.title}
+        </h3>
 
         <p>
           ${work.description.substring(0, 100)}...
@@ -78,16 +76,19 @@ function displayWorks() {
             class="star-btn"
             onclick="event.stopPropagation(); likePost(${index})"
           >
-            ⭐ ${work.likes}
+            ⭐ ${work.likes || 0}
           </button>
 
         </div>
 
       </div>
+
     `;
 
+    /* OPEN MODAL */
+
     card.addEventListener("click", () => {
-      openModal(work, index);
+      openModal(work);
     });
 
     gallery.appendChild(card);
@@ -96,11 +97,12 @@ function displayWorks() {
 
 }
 
-/* LIKE */
+/* LIKE BUTTON */
 
 function likePost(index) {
 
-  approvedWorks[index].likes++;
+  approvedWorks[index].likes =
+    (approvedWorks[index].likes || 0) + 1;
 
   localStorage.setItem(
     "approvedWorks",
@@ -111,60 +113,15 @@ function likePost(index) {
 
 }
 
-/* HIGHLIGHTS */
-
-function displayHighlights() {
-
-  highlightContainer.innerHTML = "";
-
-  const highlights =
-    approvedWorks.slice(0, 3);
-
-  highlights.forEach((work, index) => {
-
-    const card = document.createElement("div");
-
-    card.className = "card";
-
-    card.innerHTML = `
-
-      <img src="https://picsum.photos/500/300?random=highlight${index}">
-
-      <div class="card-content">
-
-        <div class="subject-tag">
-          ⭐ Featured
-        </div>
-
-        <h3>${work.title}</h3>
-
-        <p>
-          ${work.description.substring(0, 90)}...
-        </p>
-
-      </div>
-
-    `;
-
-    card.addEventListener("click", () => {
-      openModal(work, index);
-    });
-
-    highlightContainer.appendChild(card);
-
-  });
-
-}
-
-/* FILTER */
+/* FILTER BUTTONS */
 
 filterButtons.forEach(button => {
 
   button.addEventListener("click", () => {
 
-    filterButtons.forEach(btn =>
-      btn.classList.remove("active")
-    );
+    filterButtons.forEach(btn => {
+      btn.classList.remove("active");
+    });
 
     button.classList.add("active");
 
@@ -186,9 +143,10 @@ searchBox.addEventListener(
 
 /* MODAL */
 
-function openModal(work, index) {
+function openModal(work) {
 
-  const modal = document.createElement("div");
+  const modal =
+    document.createElement("div");
 
   modal.className = "modal";
 
@@ -202,70 +160,80 @@ function openModal(work, index) {
 
       <img
         class="modal-image"
-        src="https://picsum.photos/800/400?random=modal${index}"
+        src="https://picsum.photos/800/400"
       >
 
-      <h2>${work.title}</h2>
+      <div class="modal-body">
 
-      <div class="modal-tag">
-        ${work.subject}
-      </div>
+        <div class="subject-tag">
+          ${work.subject}
+        </div>
 
-      <p class="modal-description">
-        ${work.description}
-      </p>
+        <h2>
+          ${work.title}
+        </h2>
 
-      <div class="modal-info">
-
-        <p>
-          <strong>Student:</strong>
-          ${work.taggedName}
+        <p class="modal-description">
+          ${work.description}
         </p>
 
-        <p>
-          <strong>Class:</strong>
-          ${work.studentClass}
-        </p>
+        <div class="modal-info">
 
-        <p>
-          <strong>Teacher:</strong>
-          ${work.teacherName}
-        </p>
+          <p>
+            <strong>Student:</strong>
+            ${work.taggedName}
+          </p>
 
-        <p>
-          <strong>Uploaded:</strong>
-          ${work.uploadedAt}
-        </p>
+          <p>
+            <strong>Class:</strong>
+            ${work.studentClass}
+          </p>
 
-      </div>
+          <p>
+            <strong>Teacher:</strong>
+            ${work.teacherName}
+          </p>
 
-      ${
-        work.projectLink
-          ? `
-            <a
-              class="project-link"
-              href="${work.projectLink}"
-              target="_blank"
-            >
-              Open Project Link
-            </a>
-          `
-          : ""
-      }
+          <p>
+            <strong>Uploaded:</strong>
+            ${work.uploadedAt}
+          </p>
 
-      <div class="modal-files">
-
-        <h3>Uploaded Files</h3>
+        </div>
 
         ${
-          work.files.length > 0
-            ? work.files.map(file => `
-                <div class="file-item">
-                  📎 ${file.name}
-                </div>
-              `).join("")
-            : "<p>No files uploaded.</p>"
+          work.projectLink
+            ? `
+              <a
+                href="${work.projectLink}"
+                target="_blank"
+                class="project-link"
+              >
+                Open Project Link
+              </a>
+            `
+            : ""
         }
+
+        <div class="modal-files">
+
+          <h3>
+            Uploaded Files
+          </h3>
+
+          ${
+            work.files && work.files.length > 0
+
+              ? work.files.map(file => `
+                  <div class="file-item">
+                    📎 ${file.name}
+                  </div>
+                `).join("")
+
+              : "<p>No files uploaded.</p>"
+          }
+
+        </div>
 
       </div>
 
@@ -275,16 +243,24 @@ function openModal(work, index) {
 
   document.body.appendChild(modal);
 
+  /* CLOSE BUTTON */
+
   modal
     .querySelector(".close-modal")
     .addEventListener("click", () => {
+
       modal.remove();
+
     });
+
+  /* CLICK OUTSIDE */
 
   modal.addEventListener("click", e => {
 
     if (e.target === modal) {
+
       modal.remove();
+
     }
 
   });
@@ -294,4 +270,3 @@ function openModal(work, index) {
 /* START */
 
 displayWorks();
-displayHighlights();
