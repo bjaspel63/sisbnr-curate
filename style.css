@@ -1,255 +1,46 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
-  color: #333;
-}
-
-/* HEADER */
-
-header {
-  background: #4f46e5;
-  color: white;
-  padding: 16px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.logo {
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
-nav {
-  display: flex;
-  gap: 12px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  padding: 10px 14px;
-  border-radius: 10px;
-  transition: 0.2s;
-}
-
-nav a:hover {
-  background: rgba(255,255,255,0.15);
-}
-
-/* HERO */
-
-.hero {
-  background: linear-gradient(to right, #4f46e5, #7c3aed);
-  color: white;
-  text-align: center;
-  padding: 70px 20px;
-}
-
-.hero h1 {
-  font-size: 2.8rem;
-  margin-bottom: 12px;
-}
-
-.hero p {
-  font-size: 1.1rem;
-}
-
-/* CONTROLS */
-
-.controls {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  padding: 25px;
-}
-
-.controls input,
-.controls select {
-  padding: 14px;
-  border: 2px solid #ddd;
-  border-radius: 12px;
-  width: 260px;
-  font-size: 1rem;
-}
-
-/* SECTIONS */
-
-.highlights,
-.gallery-section,
-.admin-section {
-  padding: 35px 25px;
-}
-
-.highlights h2,
-.gallery-section h2,
-.admin-section h1 {
-  margin-bottom: 20px;
-  color: #4f46e5;
-}
-
-/* GRID */
-
-.highlight-grid,
-.gallery,
-.admin-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-/* CARD */
-
-.card {
-  background: white;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-  transition: 0.25s;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-}
-
-.card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
-.card-content {
-  padding: 18px;
-}
-
-.subject-tag {
-  display: inline-block;
-  background: #4f46e5;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  margin-bottom: 10px;
-}
-
-.card h3 {
-  margin-bottom: 10px;
-  color: #222;
-}
-
-.card p {
-  line-height: 1.5;
-  margin-bottom: 12px;
-}
-
-/* UPLOAD PAGE */
-
-.upload-container {
-  max-width: 700px;
-  margin: 40px auto;
-  background: white;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-}
-
-.upload-container h1 {
-  margin-bottom: 20px;
-  color: #4f46e5;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-form input,
-form select,
-form textarea {
-  padding: 14px;
-  border-radius: 12px;
-  border: 2px solid #ddd;
-  font-size: 1rem;
-}
-
-textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-/* BUTTONS */
-
-button {
-  background: #4f46e5;
-  color: white;
-  border: none;
-  padding: 14px;
-  border-radius: 12px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  background: #4338ca;
-}
-
-.notice {
-  margin-top: 20px;
-  background: #eef2ff;
-  padding: 16px;
-  border-radius: 12px;
-}
-
-.admin-actions {
+.subject-buttons {
   display: flex;
   gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
   margin-top: 15px;
 }
 
-.approve-btn {
-  background: #16a34a;
+.filter-btn {
+  background: white;
+  color: #4f46e5;
+  border: 2px solid #4f46e5;
+  padding: 10px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-weight: bold;
 }
 
-.delete-btn {
-  background: #dc2626;
-}
-
-/* FOOTER */
-
-footer {
+.filter-btn:hover {
   background: #4f46e5;
   color: white;
-  text-align: center;
-  padding: 20px;
-  margin-top: 40px;
 }
 
-/* MOBILE */
+.filter-btn.active {
+  background: #4f46e5;
+  color: white;
+}
 
-@media (max-width: 768px) {
+.card-footer {
+  margin-top: 15px;
+}
 
-  header {
-    flex-direction: column;
-    gap: 15px;
-  }
+.star-btn {
+  background: #facc15;
+  color: #222;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-  nav {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
+.star-btn:hover {
+  background: #eab308;
 }
