@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teacher Upload</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">👩‍🏫 Teacher Upload Portal</div>
+
+    <nav>
+      <a href="index.html">Gallery</a>
+      <a href="teacher.html">Teacher Upload</a>
+      <a href="admin.html">Admin Panel</a>
+    </nav>
+  </header>
+
+  <section class="upload-container">
+    <h1>Upload Student Work</h1>
+
+    <form id="uploadForm">
+      <input type="text" id="studentName" placeholder="Student Name" required />
+
+      <input type="text" id="projectTitle" placeholder="Project Title" required />
+
+      <select id="subject" required>
+        <option value="">Select Subject</option>
+        <option value="Math">Math</option>
+        <option value="Science">Science</option>
+        <option value="English">English</option>
+        <option value="ICT">ICT</option>
+        <option value="Art">Art</option>
+        <option value="History">History</option>
+      </select>
+
+      <textarea id="description" placeholder="Project Description" required></textarea>
+
+      <input type="url" id="image" placeholder="Image URL (optional)" />
+
+      <button type="submit">Upload for Approval</button>
+    </form>
+
+    <div class="notice">
+      <p>
+        Uploaded works will be reviewed by the admin before appearing in the public gallery.
+      </p>
+    </div>
+  </section>
+
+  <script src="teacher.js"></script>
+</body>
+</html>
