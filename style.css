@@ -411,4 +411,31 @@ footer {
     height: 220px;
   }
 
+  .admin-info {
+  margin-top: 15px;
+}
+
+.admin-info p {
+  margin-bottom: 8px;
+}
+
+.admin-comment {
+  width: 100%;
+  margin-top: 15px;
+  min-height: 100px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 2px solid #ddd;
+  resize: vertical;
+  font-size: 1rem;
+}
+
+.feature-btn {
+  background: #f59e0b;
+}
+
+.comment-btn {
+  background: #0ea5e9;
+}
+
 }
